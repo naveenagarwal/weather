@@ -3,7 +3,6 @@ process.env.PORT = 8080;
 
 var expect    = require('chai').expect;
 var request = require('request');
-var assert = require('assert');
 var app = require("../../app");
 
 
@@ -105,10 +104,10 @@ describe('Weather App', function() {
     // http://localhost:3000/weather/:location/:weekdayformat=json
 
     // http://localhost:3000/weather/:location
-    it('should return 422 page if location is non existing', function(done) {
+    it('should return 422 page if location is non existing in json format', function(done) {
       var weatherURL =  url + "weather/nkownLocationOnEarthWhichGoogleCanntFind?format=json";
       request.get(weatherURL, function(error, response, body) {
-        expect(JSON.parse(body).error.status).to.equal(422);
+        expect(response.statusCode).to.equal(422);
         done();
       });
     });
@@ -150,8 +149,7 @@ describe('Weather App', function() {
     it('should return 422 for invalid weekday day weather in json format', function(done) {
       var weatherURL =  url + "weather/goa/somedayInAWeek?format=json";
       request.get(weatherURL, function(error, response, body) {
-        body = JSON.parse(body);
-        expect(body.error.status).to.equal(422);
+        expect(response.statusCode).to.equal(422);
         done();
       });
     });

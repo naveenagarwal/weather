@@ -36,7 +36,9 @@ http://localhost:3000/weather/:location/:weekday?format=json
 **Note** - In json format app returns everything which it gets from the darksky api. And Weather information can only be retrived for a location if it can fetch the latitude longitude values from google geocoder api.
 
 To run the application, git clone it. Move to the cloned directory and run
+
 `npm install`
+
 `npm start` // then visit http://localhost:3000 in your browser`
 
 # Config files
@@ -47,5 +49,14 @@ currently it has geocoder api and darksky api for all the environments.
 
 # lib Directory
 It has weather.js abstract class and weather-darksky.js client specific class which implements the client specific behaviour to make request to the weather api.
+
+# middlewear Directory
+It contains all the middlewear generic middlewear used in the app.
+
+Middlewears used
+
+1. checkValidRequestFormat // It check if request is in valid format. i.e. html or json
+2. handlePageNotFound // It handle the 404 request
+3. errorHandler // it handels the other error which  might occur in app
 
 Rest is standard structure for a express node app.

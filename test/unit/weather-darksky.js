@@ -2,9 +2,6 @@ process.env.NODE_ENV = 'test';
 process.env.PORT = 8080;
 
 var expect    = require('chai').expect;
-var request = require('request');
-var assert = require('assert');
-// var app = require("../../app");
 var WeatherDarksky = require("../../lib/weather-darksky");
 
 

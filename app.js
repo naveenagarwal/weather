@@ -4,7 +4,8 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var config = require('./config/config');
+
+var middleWears = require('./middlewear/middlewear');
 
 var index = require('./routes/index');
 var weather = require('./routes/weather');
@@ -23,55 +24,24 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// custom middlewear to tell the format of the request
+// middlewear to tell the format of the request
 // code currently caters json and html format only
-app.use(function (req, res, next) {
-  var format = req.query.format || "html";
-  if(config.supportedRequestFormats.indexOf(format) > -1 ){
-    if(format == "json"){
-      req.headers.accept = 'application/' + format;
-    }else if(format == "html"){
-      req.headers.accept = 'text/' + format;
-    }
-    next();
-  }else{
-    console.log("Invalid request, unsupported format")
-    res.status(422);
-    res.send("Invalid request, unsupported format");
-  }
+app.use(function(req, res, next){
+  middleWears.checkValidRequestFormat(req, res, next);
 });
 
 app.use('/', index);
 app.use('/weather', weather);
 
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+
+// middlewear catch 404 and forward to error handler
+app.use(function(req, res, next){
+  middleWears.handlePageNotFound(req, res, next);
 });
-
-// error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = (req.app.get('env') === 'development' ||
-      req.app.get('env') === 'test') ? err : {};
-
-  // render the error page
-  res.status(err.status || 500);
-
-  res.format({
-    html: function(){
-      // rendering error template
-      res.render('error');
-    },
-    json: function(){
-      // rendering local data of response set above
-      res.send(res.locals);
-    }
-  });
+// middlewear error handler
+app.use(function(err, req, res, next){
+  middleWears.errorHandler(err, req, res, next);
 });
 
 module.exports = app;
