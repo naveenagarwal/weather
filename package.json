@@ -1,6 +1,9 @@
 {
   "name": "weather",
-  "version": "0.0.0",
+  "description": "This is a sample weather app.",
+  "author": "Naveen Agarwal <naveen.agarwal@srijan.net>",
+  "version": "1.0.0",
+  "license": "MIT",
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
