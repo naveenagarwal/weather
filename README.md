@@ -12,6 +12,8 @@ Functional test are present in test/functional
 Unit test are present in test/unit
 
 To run the test suite
+
+`npm install`
 `npm test`
 
 node-geocoder module used to fetch the location latitude, longitude using google as provider.
