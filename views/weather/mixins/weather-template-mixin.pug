@@ -1,0 +1,40 @@
+mixin weatherTemplate(locaitonWeather)
+  .jumbotron
+    img(src="/images/" + locaitonWeather.icon + ".ico" height="64" width="64")
+    div
+      | Weather on
+      = " - " + (new Date(locaitonWeather.time * 1000)).toDateString() + ", "
+      b=locaitonWeather.summary
+      if locaitonWeather.temperature
+        h4
+          | Current Temprature
+          = " - " + locaitonWeather.temperature+ "°F"
+      if locaitonWeather.apparentTemperatureMax
+        h4
+          | Max Temprature
+          = " - " + locaitonWeather.apparentTemperatureMax + "°F"
+      if locaitonWeather.apparentTemperatureMin
+        h4
+          | Min Temprature
+          = " - " + locaitonWeather.apparentTemperatureMin + "°F"
+    p
+      span(class="col-sm-3")
+        | Wind
+        br
+        = locaitonWeather.windSpeed + " m/s"
+      span(class="col-sm-3")
+        | Humidity
+        br
+        = (locaitonWeather.humidity * 100) + " %"
+      span(class="col-sm-3")
+        | Visibility
+        br
+        if locaitonWeather.visibility
+          = locaitonWeather.visibility + " Km"
+        else
+          | N/A
+      span(class="col-sm-3")
+        | Pressure
+        br
+        = locaitonWeather.pressure + " hPa"
+      br

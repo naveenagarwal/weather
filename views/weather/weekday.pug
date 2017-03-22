@@ -1,0 +1,15 @@
+extends ../layout
+
+block content
+  include ./mixins/weather-template-mixin.pug
+  include ./mixins/header-mixin.pug
+
+  +headerTemplate(location)
+
+  //- Showing the weather information till number of days in future
+  //- requested based on day of the week.
+  - i = 0
+  while i <= days
+    if locaitonWeatherData[i]
+      +weatherTemplate(locaitonWeatherData[i])
+    - i++;

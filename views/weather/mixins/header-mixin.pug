@@ -1,0 +1,18 @@
+mixin headerTemplate(location)
+  .jumbotron
+    .container
+      .col-lg-3
+        a(href=("/weather/" + location) class="btn btn-primary") Check Current Weather
+      .col-lg-3
+        a(href=("/weather/" + location + "/today") class="btn btn-primary")
+          | Check Today's Weather
+      .col-lg-3
+        .dropdown
+          button#dropdownMenu1.btn.btn-primary.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')
+            | Show Weather Information Upto Next
+            span.caret
+          ul.dropdown-menu(aria-labelledby='dropdownMenu1')
+            - weekdays = [ "monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
+            each weekday in weekdays
+              li
+                a(href=("/weather/" + location + "/" + weekday))=weekday

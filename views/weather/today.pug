@@ -1,0 +1,8 @@
+extends ../layout
+
+block content
+  include ./mixins/weather-template-mixin.pug
+  include ./mixins/header-mixin.pug
+
+  +headerTemplate(location)
+  +weatherTemplate(locaitonWeather)
