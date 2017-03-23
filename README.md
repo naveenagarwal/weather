@@ -9,7 +9,9 @@ View engine used is **pug**
 
 Mocha is used for unit and functional testing.
 Functional test are present in test/functional
-Unit test are present in test/unit
+Unit test are present in test/unit.
+
+**Nock is used to mock the darksky api. Test suite contains both mocked and unmocked test.**
 
 To run the test suite
 
