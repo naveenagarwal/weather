@@ -9,7 +9,7 @@ router.get('/', function(req, res, next) {
     },
     json: function(){
       // rendering everything we got from API
-      res.send({ message: "Welcome to weather app" });
+      res.json({ message: "Welcome to weather app" });
     }
   });
 

@@ -24,7 +24,7 @@ router.get('/:location/', function(req, res, next) {
         },
         json: function(){
           // rendering everything we got from API
-          res.send(locationWeather);
+          res.json(locationWeather);
         }
       });
     }
@@ -53,7 +53,7 @@ router.get('/:location/today/', function(req, res, next) {
         },
         json: function(){
           // rendering everything we got from API
-          res.send(locationWeather);
+          res.json(locationWeather);
         }
       });
     }
@@ -85,7 +85,7 @@ router.get('/:location/:weekday/', function(req, res, next) {
         },
         json: function(){
           // rendering everything we got from API
-          res.send(locaitonWeatherData);
+          res.json(locaitonWeatherData);
         }
       });
     }
