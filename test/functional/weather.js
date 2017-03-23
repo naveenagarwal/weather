@@ -1,13 +1,5 @@
-process.env.NODE_ENV = 'test';
-process.env.PORT = 8080;
-
 var expect    = require('chai').expect;
 var request = require('request');
-var app = require("../../app");
-
-// this is booted here cause then unit test wont run as process exits and app.close()
-// is nom ore available
-app.listen(process.env.PORT);
 
 describe('Weather App', function() {
   var url = 'http://localhost:8080/';

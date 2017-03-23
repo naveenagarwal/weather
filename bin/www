@@ -4,6 +4,7 @@
  * Module dependencies.
  */
 
+process.title = process.argv[2];
 var app = require('../app');
 var debug = require('debug')('weather:server');
 var http = require('http');

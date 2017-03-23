@@ -7,7 +7,9 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "test": "./node_modules/.bin/mocha --recursive --timeout 10000 --reporter spec"
+    "pretest": "NODE_ENV=test PORT=8080 node ./bin/www weather-test &",
+    "test": "./node_modules/.bin/mocha --recursive --timeout 10000 --reporter spec",
+    "posttest": "killall -SIGINT weather-test"
   },
   "dependencies": {
     "body-parser": "~1.16.0",

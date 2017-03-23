@@ -1,14 +1,7 @@
-process.env.NODE_ENV = 'test';
-process.env.PORT = 8080;
-
 var expect    = require('chai').expect;
 var request = require('request');
-var app = require('../../app');
 var nock = require('nock');
 var dummyJSON = require('../data/dummy-json')["darksky"];
-
-// this is booted here cause then unit test wont run as process exits and app.close()
-// is nom ore available
 
 describe('Weather App with mocking', function() {
 
