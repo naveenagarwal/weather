@@ -18,7 +18,7 @@ router.get('/:location/', function(req, res, next) {
       res.format({
         html: function(){
           res.render('weather/location', {
-            locaitonWeather: locationWeather.currently,
+            locationWeather: locationWeather.currently,
             location: location
           });
         },
@@ -47,7 +47,7 @@ router.get('/:location/today/', function(req, res, next) {
         html: function(){
           // first daily data record is current date weather
           res.render('weather/today', {
-            locaitonWeather: locationWeather.daily.data[0],
+            locationWeather: locationWeather.daily.data[0],
             location: location
           });
         },
@@ -66,7 +66,7 @@ router.get('/:location/:weekday/', function(req, res, next) {
   var weather = new Weather({ client: WeatherDarksky }),
     location = req.params.location,
     weekday = req.params.weekday,
-    locaitonWeatherData;
+    locationWeatherData;
 
   weather.fetchWeatherByDay({
     location: location,
@@ -74,18 +74,18 @@ router.get('/:location/:weekday/', function(req, res, next) {
     if(this.error){
       return next(this);
     }else{
-      locaitonWeatherData = JSON.parse(this);
+      locationWeatherData = JSON.parse(this);
       res.format({
         html: function(){
           res.render('weather/weekday', {
-            locaitonWeatherData: locaitonWeatherData.daily.data,
+            locationWeatherData: locationWeatherData.daily.data,
             days: days,
             location: location
           });
         },
         json: function(){
           // rendering everything we got from API
-          res.json(locaitonWeatherData);
+          res.json(locationWeatherData);
         }
       });
     }

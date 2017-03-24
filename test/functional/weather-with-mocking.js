@@ -32,7 +32,7 @@ describe('Weather App with mocking', function() {
       var weatherURL =  url + "weather/goa";
       request.get(weatherURL, function(error, response, body) {
         expect(response.statusCode).to.equal(200);
-        expect(body).to.include('Current Temprature');
+        expect(body).to.include('Current Temperature');
         done();
       });
     });
@@ -42,8 +42,8 @@ describe('Weather App with mocking', function() {
       var weatherURL =  url + "weather/goa/today";
       request.get(weatherURL, function(error, response, body) {
         expect(response.statusCode).to.equal(200);
-        expect(body).to.include('Max Temprature');
-        expect(body).to.include('Min Temprature');
+        expect(body).to.include('Max Temperature');
+        expect(body).to.include('Min Temperature');
         done();
       });
     });
@@ -55,8 +55,8 @@ describe('Weather App with mocking', function() {
       var weatherURL =  url + "weather/goa/saturday";
       request.get(weatherURL, function(error, response, body) {
         expect(response.statusCode).to.equal(200);
-        expect(body).to.include('Max Temprature');
-        expect(body).to.include('Min Temprature');
+        expect(body).to.include('Max Temperature');
+        expect(body).to.include('Min Temperature');
         done();
       });
     });

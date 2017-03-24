@@ -4,9 +4,9 @@ var middleWears = {
   checkValidRequestFormat: function(req, res, next){
     var format = req.query.format || "html";
     if(config.supportedRequestFormats.indexOf(format) > -1 ){
-      if(format == "json"){
+      if(format === "json"){
         req.headers.accept = 'application/' + format;
-      }else if(format == "html"){
+      }else if(format === "html"){
         req.headers.accept = 'text/' + format;
       }
       next();
