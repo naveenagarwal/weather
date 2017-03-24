@@ -2,7 +2,7 @@ var express = require('express');
 var path = require('path');
 var logger = require('morgan');
 
-var middleWears = require('./middlewear/middlewear');
+var middleWares = require('./middleware/middleware');
 
 var index = require('./routes/index');
 var weather = require('./routes/weather');
@@ -16,10 +16,12 @@ app.set('view engine', 'pug');
 app.use(logger('dev'));
 app.use(express.static(path.join(__dirname, 'public')));
 
-// middlewear to tell the format of the request
-// code currently caters json and html format only
+/*
+ middleware to tell the format of the request
+ code currently caters json and html format only
+ */
 app.use(function(req, res, next){
-  middleWears.checkValidRequestFormat(req, res, next);
+  middleWares.checkValidRequestFormat(req, res, next);
 });
 
 app.use('/', index);
@@ -27,13 +29,13 @@ app.use('/weather', weather);
 
 
 
-// middlewear catch 404 and forward to error handler
+// middleware catch 404 and forward to error handler
 app.use(function(req, res, next){
-  middleWears.handlePageNotFound(req, res, next);
+  middleWares.handlePageNotFound(req, res, next);
 });
-// middlewear error handler
+// middleware error handler
 app.use(function(err, req, res, next){
-  middleWears.errorHandler(err, req, res, next);
+  middleWares.errorHandler(err, req, res, next);
 });
 
 module.exports = app;

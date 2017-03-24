@@ -1,6 +1,6 @@
 var config = require('../config/config');
 
-var middleWears = {
+var middleWares = {
   checkValidRequestFormat: function(req, res, next){
     var format = req.query.format || "html";
     if(config.supportedRequestFormats.indexOf(format) > -1 ){
@@ -45,4 +45,4 @@ var middleWears = {
   }
 };
 
-module.exports = middleWears;
+module.exports = middleWares;
