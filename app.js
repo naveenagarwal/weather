@@ -1,13 +1,13 @@
-var express = require('express');
-var path = require('path');
-var logger = require('morgan');
+const express = require('express');
+const path = require('path');
+const logger = require('morgan');
 
-var middleWares = require('./middleware/middleware');
+const middleWares = require('./middleware/middleware');
 
-var index = require('./routes/index');
-var weather = require('./routes/weather');
+const index = require('./routes/index');
+const weather = require('./routes/weather');
 
-var app = express();
+const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

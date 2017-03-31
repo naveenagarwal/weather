@@ -1,7 +1,7 @@
-var expect    = require('chai').expect;
-var WeatherDarksky = require("../../lib/weather-darksky");
-var nock = require('nock');
-var fixtures = require('../fixtures/dummy-json')["darksky"];
+const expect    = require('chai').expect;
+const WeatherDarksky = require("../../lib/weather-darksky");
+const nock = require('nock');
+const fixtures = require('../fixtures/dummy-json')["darksky"];
 
 describe('Weather Darksky class test with mocking API', function() {
   beforeEach(function(){

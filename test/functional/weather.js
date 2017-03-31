@@ -1,9 +1,9 @@
-var expect    = require('chai').expect;
-var nock = require('nock');
-var app = require('../../app');
-var fixtures = require('../fixtures/dummy-json')["darksky"];
+const expect    = require('chai').expect;
+const nock = require('nock');
+const app = require('../../app');
+const fixtures = require('../fixtures/dummy-json')["darksky"];
 
-var request = require('supertest')(app);
+const request = require('supertest')(app);
 
 describe('Weather App with mocking', function() {
 

@@ -1,8 +1,8 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
-var Weather = require('../lib/weather');
-var WeatherDarksky = require('../lib/weather-darksky');
+const Weather = require('../lib/weather');
+const WeatherDarksky = require('../lib/weather-darksky');
 
 /* GET weather information by location. */
 router.get('/:location/', function(req, res, next) {

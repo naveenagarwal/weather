@@ -4,14 +4,14 @@ This is a weather app to tell you the weather forecast.
 # Used framework
 Express js
 
-Applicaiton is structurted using **express-generator**
+Application is structured using **express-generator**
 View engine used is **pug**
 
 Mocha is used for unit and functional testing.
 Functional test are present in test/functional
 Unit test are present in test/unit.
 
-**Nock is used to mock the darksky api. Test suite contains both mocked and unmocked test.**
+**Nock is used to mock the darksky api.**
 
 To run the test suite
 
@@ -20,7 +20,7 @@ To run the test suite
 `npm test`
 
 node-geocoder module used to fetch the location latitude, longitude using google as provider.
-github https://github.com/nchaulet/node-geocoder
+GitHub https://github.com/nchaulet/node-geocoder
 
 Application responds to both **HTM**L and **JSON** format of request.
 
@@ -56,7 +56,7 @@ currently it has geocoder api and darksky api for all the environments.
 **To change the api keys for geocoder or darksky api, change the values in config/environment/development.js file or dependign on the environment you are ruinng the application.**
 
 # lib Directory
-It has weather.js class which uses dependency injection and expects client class reference when initialized,
+It has weather.js class which uses dependency injection and expects client class reference as parameter when initialized,
 and weather-darksky.js client specific class which implements the client specific behaviour to make request to the weather api.
 
 # middleware Directory
@@ -66,7 +66,7 @@ Middleware used
 
 1. checkValidRequestFormat // It check if request is in valid format. i.e. html or json
 2. handlePageNotFound // It handle the 404 request
-3. errorHandler // it handels the other error which  might occur in app
+3. errorHandler // it handles the other error which  might occur in app
 
 
 
