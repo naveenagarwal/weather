@@ -56,12 +56,13 @@ currently it has geocoder api and darksky api for all the environments.
 **To change the api keys for geocoder or darksky api, change the values in config/environment/development.js file or dependign on the environment you are ruinng the application.**
 
 # lib Directory
-It has weather.js abstract class and weather-darksky.js client specific class which implements the client specific behaviour to make request to the weather api.
+It has weather.js class which uses dependency injection and expects client class reference when initialized,
+and weather-darksky.js client specific class which implements the client specific behaviour to make request to the weather api.
 
-# middlewear Directory
-It contains all the middlewear generic middlewear used in the app.
+# middleware Directory
+It contains all the middleware generic middleware used in the app.
 
-Middlewears used
+Middleware used
 
 1. checkValidRequestFormat // It check if request is in valid format. i.e. html or json
 2. handlePageNotFound // It handle the 404 request

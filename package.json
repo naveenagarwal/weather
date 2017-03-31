@@ -7,20 +7,19 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "pretest": "NODE_ENV=test PORT=8080 node ./bin/www weather-test &",
-    "test": "./node_modules/.bin/mocha --recursive --timeout 10000 --reporter spec",
-    "posttest": "killall -SIGINT weather-test"
+    "test": "NODE_ENV=test ./node_modules/.bin/mocha --recursive --timeout 10000 --reporter spec"
   },
   "dependencies": {
     "debug": "~2.6.0",
     "express": "~4.14.1",
     "morgan": "~1.7.0",
     "node-geocoder": "^3.16.0",
-    "pug": "~2.0.0-beta10"
+    "pug": "~2.0.0-beta10",
+    "request": "^2.81.0"
   },
   "devDependencies": {
     "mocha": "^3.2.0",
     "nock": "^9.0.9",
-    "request": "^2.81.0"
+    "supertest": "^3.0.0"
   }
 }

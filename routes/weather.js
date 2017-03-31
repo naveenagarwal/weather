@@ -45,7 +45,7 @@ router.get('/:location/today/', function(req, res, next) {
       locationWeather = JSON.parse(this);
       res.format({
         html: function(){
-          // first daily data record is current date weather
+          // first daily fixtures record is current date weather
           res.render('weather/today', {
             locationWeather: locationWeather.daily.data[0],
             location: location
