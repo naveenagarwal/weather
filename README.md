@@ -71,3 +71,7 @@ Middleware used
 
 
 Rest is standard structure for a express node app.
+
+#TODO
+
+Separate the node-geocoder dependency from the darksky client.
