@@ -234,5 +234,6 @@
         }
       ]
     }
-  }
+  },
+  "geocoder": [ { "address_components": [], "geometry": { "location": { "lat": 15.2993265, "lng": 74.12399599999999} } } ]
 }

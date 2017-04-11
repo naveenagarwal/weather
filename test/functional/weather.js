@@ -1,19 +1,39 @@
 const expect    = require('chai').expect;
 const nock = require('nock');
 const app = require('../../app');
-const fixtures = require('../fixtures/dummy-json')["darksky"];
+
+const fixtures = require('../fixtures/dummy-json');
+const fixturesDarksky = fixtures["darksky"];
+const fixturesGeocoder = fixtures["geocoder"];
 
 const request = require('supertest')(app);
+
+var status = 'OK';
 
 describe('Weather App with mocking', function() {
 
 
     beforeEach(function(){
       nock('https://api.darksky.net')
-      .get(function(url) {
+      .get(function() {
         return true;
       })
-      .reply(200, fixtures);
+      .reply(200, fixturesDarksky);
+
+        nock('https://maps.googleapis.com')
+        .get(function(url) {
+            var location = escape("this location is not available");
+            var regex = new RegExp(location);
+            if (regex.test(url)) {
+                status = "Error";
+            }else {
+                status = 'OK';
+            }
+            return true;
+        })
+        .reply(200, function () {
+            return { results: fixturesGeocoder, status: status };
+        });
     });
 
     afterEach(function(){
@@ -95,7 +115,7 @@ describe('Weather App with mocking', function() {
       .expect(200)
       .end(function(error, response) {
         text = JSON.parse(response.text);
-        expect(text.currently).to.be.deep.equal(fixtures.currently);
+        expect(text.currently).to.be.deep.equal(fixturesDarksky.currently);
         done();
       });
     });
@@ -109,7 +129,7 @@ describe('Weather App with mocking', function() {
       .expect(200)
       .end(function(error, response) {
         text = JSON.parse(response.text);
-        expect(text.daily.data).to.be.deep.equal(fixtures.daily.data);
+        expect(text.daily.data).to.be.deep.equal(fixturesDarksky.daily.data);
         done();
       });
     });

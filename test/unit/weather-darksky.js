@@ -1,7 +1,12 @@
 const expect    = require('chai').expect;
 const WeatherDarksky = require("../../lib/weather-darksky");
 const nock = require('nock');
-const fixtures = require('../fixtures/dummy-json')["darksky"];
+
+const fixtures = require('../fixtures/dummy-json');
+const fixturesDarksky = fixtures["darksky"];
+const fixturesGeocoder = fixtures["geocoder"];
+
+var status = 'OK';
 
 describe('Weather Darksky class test with mocking API', function() {
   beforeEach(function(){
@@ -9,11 +14,26 @@ describe('Weather Darksky class test with mocking API', function() {
     .get(function() {
       return true;
     })
-    .reply(200, fixtures);
+    .reply(200, fixturesDarksky);
+
+    nock('https://maps.googleapis.com')
+    .get(function(url) {
+        var location = escape("this location is not available");
+        var regex = new RegExp(location);
+        if (regex.test(url)) {
+            status = "Error";
+        }else {
+            status = 'OK';
+        }
+      return true;
+    })
+    .reply(200, function () {
+        return { results: fixturesGeocoder, status: status };
+    });
   });
 
   afterEach(function(){
-    nock.cleanAll()
+    nock.cleanAll();
   });
 
   it('fetchWeatherByLocation for a location fetch weather with mocking', function(done){
@@ -24,7 +44,7 @@ describe('Weather Darksky class test with mocking API', function() {
 
     weather.fetchWeatherByLocation(options, function(){
       var locationWeather = JSON.parse(this);
-      expect(locationWeather.currently).to.be.deep.equal(fixtures.currently);
+      expect(locationWeather.currently).to.be.deep.equal(fixturesDarksky.currently);
       done();
     });
   });
@@ -37,7 +57,7 @@ describe('Weather Darksky class test with mocking API', function() {
 
     weather.fetchWeatherForCurrentDay(options, function(){
       var locationWeather = JSON.parse(this);
-      expect(locationWeather.daily.data).to.deep.equal(fixtures.daily.data);
+      expect(locationWeather.daily.data).to.deep.equal(fixturesDarksky.daily.data);
       done();
     });
   });
@@ -51,7 +71,7 @@ describe('Weather Darksky class test with mocking API', function() {
 
     weather.fetchWeatherByDay(options, function(){
       var locationWeather = JSON.parse(this);
-      expect(locationWeather.daily.data).to.be.deep.equal(fixtures.daily.data);
+      expect(locationWeather.daily.data).to.be.deep.equal(fixturesDarksky.daily.data);
       done();
     });
   });
